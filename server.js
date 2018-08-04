@@ -16,21 +16,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //Starts the server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
 //-------------------------------------------------------------------------------------------
 //ROUTES DISPLAYING HTML PAGES
 //code for displaying the HTML page when we get it
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get("/reserve", function(req, res) {
+app.get("/reserve", function (req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
-app.get("/tables", function(req, res) {
+app.get("/tables", function (req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 });
 //------------------------------------------------------------------------------------------------------
@@ -45,12 +45,12 @@ var tables = [];
 //---------------------------------------------------------------------------------------------------------------------
 //ROUTING FOR TABLE DATA
 // Displays all reserve data objects
-app.get("/api/reserve", function(req, res) {
+app.get("/api/reserve", function (req, res) {
   return res.json(reserve);
 });
 
 // Displays a single person in the reserve array of objects, or returns false
-app.get("/api/reserve/:name", function(req, res) {
+app.get("/api/reserve/:name", function (req, res) {
   var chosen = req.params.name;
 
   for (var i = 0; i < reserve.length; i++) {
@@ -63,12 +63,12 @@ app.get("/api/reserve/:name", function(req, res) {
 });
 
 //Displays all people in the tables
-app.get("/api/tables", function(req, res) {
+app.get("/api/tables", function (req, res) {
   return res.json(reserve);
 });
 
 // Displays a single person in the tables array of objects, or returns false
-app.get("/api/tables/:name", function(req, res) {
+app.get("/api/tables/:name", function (req, res) {
   var chosen = req.params.name;
 
   for (var i = 0; i < tables.length; i++) {
@@ -96,4 +96,3 @@ app.post("/api/reserve", function(req, res) {
     res.json(false);
   }
 });
-//------------------------------------------------------------------------------------------------------------------
