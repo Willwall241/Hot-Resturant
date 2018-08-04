@@ -13,9 +13,6 @@ var PORT = process.env.PORT || 4004;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //Starts the server
-app.listen(PORT, function () {
-  console.log("App listening on PORT " + PORT);
-});
 //-------------------------------------------------------------------------------------------
 //ROUTES DISPLAYING HTML PAGES
 //code for displaying the HTML page when we get it
@@ -53,7 +50,7 @@ app.get("/api/reserve/:name", function (req, res) {
 });
 //Displays all people in the tables
 app.get("/api/tables", function (req, res) {
-  return res.json(reserve);
+  return res.json(tables);
 });
 // Displays a single person in the tables array of objects, or returns false
 app.get("/api/tables/:name", function (req, res) {
@@ -71,7 +68,7 @@ app.get("/api/tables/:name", function (req, res) {
 //POST method for adding a new reserved data object
 app.post("/api/reserve", function(req, res) {
   var newReserve = req.body;
-  newReserve.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  console.log(newReserve);
   if (reserve.length < 5){
     reserve.push(newReserve);
     res.json(true);
@@ -82,3 +79,9 @@ app.post("/api/reserve", function(req, res) {
   }
 });
 
+app.listen(PORT, function (err) {
+  console.log("App listening on PORT " + PORT);
+  if (err) {
+    console.log(err);
+}}
+);
