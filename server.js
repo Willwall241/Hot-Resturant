@@ -80,3 +80,40 @@ app.get("/api/tables/:name", function(req, res) {
   return res.json(false);
 });
 //-------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------------------
+//ROUTING FOR ADDING NEW DATA OBJECTS
+//POST method for adding a new reserved data object
+app.post("/api/reserve", function(req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body-parser middleware
+  var newReserve = req.body;
+
+  // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  newReserve.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newReserve);
+
+  reserve.push(newReserve);
+
+  res.json(newReserve);
+});
+
+//POST method for adding a new waitlist data object
+app.post("/api/tables", function(req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body-parser middleware
+  var newTable = req.body;
+
+  // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  newTable.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newTable);
+
+  tables.push(newTable);
+
+  res.json(newTable);
+});
+//------------------------------------------------------------------------------------------------------------------
